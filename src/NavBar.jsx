@@ -1,10 +1,10 @@
-import React from "react";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
     <div className="navbar bg-base-300 shadow-sm">
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <Link to="/" className="btn btn-ghost text-xl">💻 daisyUI</Link>
       </div>
       <div className="flex gap-2">
         <div className="dropdown dropdown-end mx-7">
@@ -25,16 +25,16 @@ const NavBar = () => {
             className="menu menu-sm dropdown-content bg-base-300 rounded-box z-1 mt-3.5 w-62 p-4 shadow"
           >
             <li>
-              <a className="justify-between">
+              <Link>
                 Profile
                 <span className="badge">New</span>
-              </a>
+              </Link>
             </li>
             <li>
               <a>Settings</a>
             </li>
             <li>
-              <a>Logout</a>
+              <Link onClick={() => console.log("Logged out")}>Logout</Link>
             </li>
           </ul>
         </div>

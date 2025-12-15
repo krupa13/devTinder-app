@@ -1,15 +1,31 @@
 import { useState } from "react";
 import loginImage from "../assets/login-access.jpg";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
+import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../utils/Constants";
+import { toast } from "react-toastify";
 
 const Login = () => {
-  const [emailId, setEmailId] = useState("solomon@gmail.com");
-  const [password, setPassword] = useState("Solomon@1234");
+  const [emailId, setEmailId] = useState("krupa@gmail.com");
+  const [password, setPassword] = useState("Krupa@1234");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
+    if (!emailId) {
+      toast.error("Email ID is required");
+      return;
+    }
+    if (!password) {
+      toast.error("Password is required");
+      return;
+    }
+
     try {
       const res = await axios.post(
-        "http://localhost:7777/login",
+        BASE_URL + "/login",
         {
           emailId,
           password,
@@ -18,9 +34,11 @@ const Login = () => {
           withCredentials: true,
         }
       );
-      console.log("login response: ", res.data);
+      dispatch(addUser(res.data));
+      toast.success("Login successful!");
+      navigate("/");
     } catch (err) {
-      console.error("Login Failed: ", err);
+      toast.error(err?.response?.data || "Login failed");
     }
   };
 

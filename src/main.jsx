@@ -10,6 +10,8 @@ import { Provider } from "react-redux";
 import appStore from "./utils/appstore.js";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Connections from "./components/Connections.jsx";
+import Requests from "./components/Requests.jsx";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +21,8 @@ const router = createBrowserRouter([
       { path: "/", element: <Feed />},
       { path: "/login", element: <Login /> },
       { path: "/profile", element: <Profile /> },
+      { path: "/connections", element: <Connections /> },
+      { path: "/requests", element: <Requests /> },
     ],
   },
 ]);

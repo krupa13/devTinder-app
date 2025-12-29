@@ -14,3 +14,11 @@ The React Compiler is not enabled on this template because of its impact on dev 
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## AWS Initialisation process
+
+In the windows powershell -> cd -Path "C:\Users\Krupa Nandh\Downloads"
+icacls "devUser-secret.pem" /inheritance:r /grant:r "$($env:USERNAME):(F)"
+key generated in AWS instance -> ssh -i "devUser-secret.pem" ec2-user@ec2-13-60-52-172.eu-north-1.compute.amazonaws.com
+install the curl from Node js website
+install the same node version which version we are using in the local

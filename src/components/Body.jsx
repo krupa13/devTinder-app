@@ -13,12 +13,12 @@ function Body() {
   const userData = useSelector(store => store.user);
 
   const fetchUserData = async () => {
-    if(userData) return; //If user data already exists, no need to fetch again
+    if(userData) return; // If user data already present, skip fetching
     try {
       const res = await axios.get(BASE_URL + "/profile/view", {
         withCredentials: true,
       });
-      dispatch(addUser(res.data))
+      dispatch(addUser(res?.data));
     } catch (err) {
       if(err.status === 401) {
         navigate("/login");

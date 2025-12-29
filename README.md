@@ -20,5 +20,7 @@ If you are developing a production application, we recommend using TypeScript wi
 In the windows powershell -> cd -Path "C:\Users\Krupa Nandh\Downloads"
 icacls "devUser-secret.pem" /inheritance:r /grant:r "$($env:USERNAME):(F)"
 key generated in AWS instance -> ssh -i "devUser-secret.pem" ec2-user@ec2-13-60-52-172.eu-north-1.compute.amazonaws.com
+ssh -i "devUser-secret.pem" ubuntu@ec2-98-92-160-190.compute-1.amazonaws.com
 install the curl from Node js website
 install the same node version which version we are using in the local
+check ls-list the folders in the ubuntu terminal, we will get the list of projects that has been cloned

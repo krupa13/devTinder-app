@@ -46,6 +46,7 @@ Body
     - (Local Path) cd -Path "C:\Users\Krupa Nandh\Downloads"
     - (can provide whatever secret pem) icacls "devUser-secret.pem" /inheritance:r /grant:r "$($env:USERNAME):(F)"
     - ssh -i "devUser-secret.pem" ec2-user@ec2-13-60-52-172.eu-north-1.compute.amazonaws.com
+    - (ssh key of AWS instance) -> ssh -i "devUser-secret.pem" ubuntu@ec2-98-92-160-190.compute-1.amazonaws.com
 
     ### Deployment
     - Signup on AWS 

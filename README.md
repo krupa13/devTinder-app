@@ -48,6 +48,18 @@ Body
     - ssh -i "devUser-secret.pem" ec2-user@ec2-13-60-52-172.eu-north-1.compute.amazonaws.com
     - (ssh key of AWS instance) -> ssh -i "devUser-secret.pem" ubuntu@ec2-98-92-160-190.compute-1.amazonaws.com
 
+    ## When the Database connection failed and gives undefined regards any MongoDB connection:
+    - Create a .env file on Ubuntu: nano .env
+    - Add your MongoDB connection string: 
+    (MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/devtinder
+    PORT=7777)
+    -----> Replace username, password, and cluster with your actual MongoDB Atlas credentials.
+    - Save (Ctrl+O, Enter, Ctrl+X)
+    - Then restart PM2:
+    - pm2 delete <name>
+    - pm2 start npm --name <"Any Name we can give"> -- start
+    - Check the logs -> pm2 logs devTinder-backend
+
     ### Deployment
     - Signup on AWS 
     - Launch instance
@@ -75,7 +87,6 @@ Body
         - config nginx - /etc/nginx/sites-available/default
         - restart nginx - sudo systemctl restart nginx
         - Modify the BASEURL in frontend project to "/api"
-
 
 
 # Ngxinx config: 

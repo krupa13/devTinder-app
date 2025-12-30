@@ -42,10 +42,12 @@ Body
     Route=/connetions => Connections
     Router=/profile => Profile
 
+    ### AWS ubuntu instance in windows powershell
+    - (Local Path) cd -Path "C:\Users\Krupa Nandh\Downloads"
+    - (can provide whatever secret pem) icacls "devUser-secret.pem" /inheritance:r /grant:r "$($env:USERNAME):(F)"
+    - ssh -i "devUser-secret.pem" ec2-user@ec2-13-60-52-172.eu-north-1.compute.amazonaws.com
 
-
-    # Deployment
-
+    ### Deployment
     - Signup on AWS 
     - Launch instance
     - chmod 400 <secret>.pem

@@ -120,14 +120,15 @@ Body
     - signup on cloudflare & add a new domain name
     - change the nameservers on godaddy and point it to cloudflare
     - wait for sometime till your nameservers are updated ~15 minutes
-    - DNS record: A devtinder.in 43.204.96.49
+    - DNS record:(DNS basically tells us, where this domain name is mapping to) A devtinder.in 43.204.96.49
     - Enable SSL for website 
 
 
 # Sending Emails via SES
 
-    - Create a IAM user
-    - Give Access to AmazonSESFullAccess
+    - Create a IAM user -> Search IAM and Click on Users
+    -> Give a User name and Set Permissions -> Attach policies directly
+    -> Permissions Policies -> Give Access to AmazonSESFullAccess
     - Amazon SES: Create an Identity
     - Verify your domain name
     - Verify an email address identity

@@ -44,9 +44,8 @@ Body
 
     ### AWS ubuntu instance in windows powershell
     - (Local Path) cd -Path "C:\Users\Krupa Nandh\Downloads"
-    - (can provide whatever secret pem) icacls "devUser-secret.pem" /inheritance:r /grant:r "$($env:USERNAME):(F)"
-    - ssh -i "devUser-secret.pem" ec2-user@ec2-13-60-52-172.eu-north-1.compute.amazonaws.com
-    - (ssh key of AWS instance) -> ssh -i "devUser-secret.pem" ubuntu@ec2-98-92-160-190.compute-1.amazonaws.com
+    - (can provide whatever secret pem) icacls "devmeet-secret.pem" /inheritance:r /grant:r "$($env:USERNAME):(F)"
+    - (ssh key of AWS instance) -> ssh -i "devmeet-secret.pem" ubuntu@ec2-98-130-136-3.ap-south-2.compute.amazonaws.com
 
     ## When the Database connection failed and gives undefined regards any MongoDB connection:
     - Create a .env file on Ubuntu: nano .env

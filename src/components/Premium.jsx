@@ -1,7 +1,64 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { BASE_URL } from "../utils/Constants";
 
 const Premium = () => {
-  return (
+  const [isUserPremium, setIsUserPremium] = useState(false);
+
+  const verifyPremiumUser = async () => {
+    const res = await axios.get(BASE_URL + "/payment/verify", {
+      withCredentials: true
+    });
+    if(res.data.isPremium) {
+      setIsUserPremium(true);
+    }
+  };
+
+  useEffect(() => {
+    const fetchPremiumStatus = async () => {
+      await verifyPremiumUser();
+    };
+    fetchPremiumStatus();
+  }, []);
+
+  const handleMembership = async (type) => {
+    try {
+      const order = await axios.post(BASE_URL + "/payment/create", {
+        membershipType: type
+      }, {
+        withCredentials: true
+      });
+
+      const { amount, orderId, currency, keyId, notes } = order.data;
+
+      // Open Razorpay Checkout
+      const options = {
+        key: keyId,
+        amount,
+        currency,
+        name: 'Dev Meet',
+        description: 'Connect with other developers',
+        order_id: orderId,
+        prefill: {
+          name: notes.firstName + " " + notes.lastName,
+          email: notes.emailId,
+          contact: '9999999999'
+        },
+        theme: {
+          color: '#F37254'
+        },
+      };
+
+      const rzp = new window.Razorpay(options);
+      rzp.open();
+    } catch (error) {
+      console.error("Error processing membership: ", error)
+    }
+  }
+
+  return isUserPremium ? (
+    <div>You are already a premium user</div>
+  ) : (
     <div className="min-h-screen from-base-200 to-base-300 flex items-center justify-center p-4">
       <div className="flex flex-col lg:flex-row gap-6 justify-center items-stretch max-w-5xl w-full">
         {/* Silver Membership Card */}
@@ -29,7 +86,10 @@ const Premium = () => {
                 <span>Priority support</span>
               </li>
             </ul>
-            <button className="btn btn-secondary btn-md w-full font-bold">
+            <button 
+              className="btn btn-secondary btn-md w-full font-bold"
+              onClick={() => handleMembership("silver")}
+            >
               Buy Silver
             </button>
           </div>
@@ -71,7 +131,10 @@ const Premium = () => {
                 <span>24/7 premium support</span>
               </li>
             </ul>
-            <button className="btn btn-primary btn-md w-full font-bold">
+            <button 
+              className="btn btn-primary btn-md w-full font-bold"
+              onClick={() => handleMembership("gold")}
+            >
               Buy Gold
             </button>
           </div>

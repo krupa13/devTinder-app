@@ -6,10 +6,11 @@ const Premium = () => {
   const [isUserPremium, setIsUserPremium] = useState(false);
 
   const verifyPremiumUser = async () => {
-    const res = await axios.get(BASE_URL + "/payment/verify", {
-      withCredentials: true
+    const res = await axios.get(BASE_URL + "/premium/verify", {
+      withCredentials: true,
     });
-    if(res.data.isPremium) {
+
+    if (res.data.isPremium) {
       setIsUserPremium(true);
     }
   };
@@ -21,40 +22,38 @@ const Premium = () => {
     fetchPremiumStatus();
   }, []);
 
-  const handleMembership = async (type) => {
-    try {
-      const order = await axios.post(BASE_URL + "/payment/create", {
-        membershipType: type
-      }, {
-        withCredentials: true
-      });
+  const handleBuyClick = async (type) => {
+    const order = await axios.post(
+      BASE_URL + "/payment/create",
+      {
+        membershipType: type,
+      },
+      { withCredentials: true }
+    );
 
-      const { amount, orderId, currency, keyId, notes } = order.data;
+    const { amount, keyId, currency, notes, orderId } = order.data;
 
-      // Open Razorpay Checkout
-      const options = {
-        key: keyId,
-        amount,
-        currency,
-        name: 'Dev Meet',
-        description: 'Connect with other developers',
-        order_id: orderId,
-        prefill: {
-          name: notes.firstName + " " + notes.lastName,
-          email: notes.emailId,
-          contact: '9999999999'
-        },
-        theme: {
-          color: '#F37254'
-        },
-      };
+    const options = {
+      key: keyId,
+      amount,
+      currency,
+      name: "Dev Tinder",
+      description: "Connect to other developers",
+      order_id: orderId,
+      prefill: {
+        name: notes.firstName + " " + notes.lastName,
+        email: notes.emailId,
+        contact: "9999999999",
+      },
+      theme: {
+        color: "#F37254",
+      },
+      handler: verifyPremiumUser,
+    };
 
-      const rzp = new window.Razorpay(options);
-      rzp.open();
-    } catch (error) {
-      console.error("Error processing membership: ", error)
-    }
-  }
+    const rzp = new window.Razorpay(options);
+    rzp.open();
+  };
 
   return isUserPremium ? (
     <div>You are already a premium user</div>
@@ -88,7 +87,7 @@ const Premium = () => {
             </ul>
             <button 
               className="btn btn-secondary btn-md w-full font-bold"
-              onClick={() => handleMembership("silver")}
+              onClick={() => handleBuyClick("silver")}
             >
               Buy Silver
             </button>
@@ -133,7 +132,7 @@ const Premium = () => {
             </ul>
             <button 
               className="btn btn-primary btn-md w-full font-bold"
-              onClick={() => handleMembership("gold")}
+              onClick={() => handleBuyClick("gold")}
             >
               Buy Gold
             </button>

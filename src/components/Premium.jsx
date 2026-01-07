@@ -56,7 +56,23 @@ const Premium = () => {
   };
 
   return isUserPremium ? (
-    <div>You are already a premium user</div>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-base-200 to-base-300 p-4">
+      <div className="card bg-gradient-to-br from-green-50 to-green-100 shadow-xl ring-2 ring-success flex flex-col items-center px-8 py-10 max-w-md w-full">
+        <div className="flex flex-col items-center">
+          <span className="text-5xl mb-4">🥇</span>
+          <h2 className="text-2xl font-bold text-success mb-2">
+            You are already a Premium User!
+          </h2>
+          <p className="text-success-content text-center mb-4">
+            Thank you for supporting Dev Tinder. Enjoy your exclusive premium
+            features and happy connecting!
+          </p>
+          <span className="badge badge-success badge-lg mb-2">
+            Premium Active
+          </span>
+        </div>
+      </div>
+    </div>
   ) : (
     <div className="min-h-screen from-base-200 to-base-300 flex items-center justify-center p-4">
       <div className="flex flex-col lg:flex-row gap-6 justify-center items-stretch max-w-5xl w-full">
@@ -66,7 +82,9 @@ const Premium = () => {
             <h1 className="text-2xl font-bold text-slate-800 mb-1">
               🌟 Silver Membership
             </h1>
-            <div className="badge badge-secondary mb-3 justify-center">3 Months</div>
+            <div className="badge badge-secondary mb-3 justify-center">
+              3 Months
+            </div>
             <ul className="text-left text-black text-sm space-y-2 my-4 flex-grow">
               <li className="flex items-center gap-2">
                 <span className="badge badge-secondary badge-sm">✓</span>
@@ -85,7 +103,7 @@ const Premium = () => {
                 <span>Priority support</span>
               </li>
             </ul>
-            <button 
+            <button
               className="btn btn-secondary btn-md w-full font-bold"
               onClick={() => handleBuyClick("silver")}
             >
@@ -111,7 +129,9 @@ const Premium = () => {
             <h1 className="text-2xl font-bold text-amber-900 mb-1">
               👑 Gold Membership
             </h1>
-            <div className="badge badge-primary mb-3 justify-center">6 Months</div>
+            <div className="badge badge-primary mb-3 justify-center">
+              6 Months
+            </div>
             <ul className="text-left text-black text-sm space-y-2 my-4 flex-grow">
               <li className="flex items-center gap-2">
                 <span className="badge badge-primary badge-sm">✓</span>
@@ -130,7 +150,7 @@ const Premium = () => {
                 <span>24/7 premium support</span>
               </li>
             </ul>
-            <button 
+            <button
               className="btn btn-primary btn-md w-full font-bold"
               onClick={() => handleBuyClick("gold")}
             >

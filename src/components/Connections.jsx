@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { BASE_URL } from "../utils/Constants";
 import axios from "axios";
 import { addConnection } from "../utils/connectionSlice";
+import { Link } from "react-router-dom";
 
 const Connections = () => {
   const dispatch = useDispatch();
@@ -49,7 +50,7 @@ const Connections = () => {
 
       <div className="flex flex-wrap justify-center gap-6 max-w-7xl mx-auto">
         {connections.map((connection, index) => {
-          const { firstName, lastName, photoURL, age, gender, about } =
+          const { _id, firstName, lastName, photoURL, age, gender, about } =
             connection;
 
           return (
@@ -76,6 +77,27 @@ const Connections = () => {
                 <p className="text-center text-gray-300 text-xs line-clamp-2">
                   {about}
                 </p>
+              </div>
+              <div className="flex justify-center pb-4">
+                <Link to={"/chat/" + _id} className="w-full flex justify-center">
+                  <button className="btn btn-primary btn-md w-5/6 rounded-full font-semibold shadow-lg bg-gradient-to-r from-cyan-400 to-blue-500 border-0 hover:from-blue-500 hover:to-cyan-400 transition-all duration-200 flex items-center gap-2 justify-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className="w-5 h-5"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M21.75 6.75v6a2.25 2.25 0 01-2.25 2.25h-5.25l-3.75 3v-3H4.5A2.25 2.25 0 012.25 12.75v-6A2.25 2.25 0 014.5 4.5h15a2.25 2.25 0 012.25 2.25z"
+                      />
+                    </svg>
+                    Chat
+                  </button>
+                </Link>
               </div>
             </div>
           );

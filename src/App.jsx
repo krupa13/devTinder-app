@@ -6,6 +6,7 @@ import Feed from "./components/Feed.jsx";
 import Connections from "./components/Connections.jsx";
 import Requests from "./components/Requests.jsx";
 import Premium from "./components/Premium.jsx";
+import Chat from "./components/Chat.jsx";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
       { path: "/connections", element: <Connections /> },
       { path: "/requests", element: <Requests /> },
       { path: "/premium", element: <Premium /> },
+      { path: "/chat/:targetUserId", element: <Chat />}
     ],
   },
 ]);
